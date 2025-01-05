@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "FdFBpkGh3k+f8QuRNUzApE+Iz9SvAJE+VkDc7vRDtew=",
+  "Source": "BankQueueAPI",
+  "BasePath": "_content/BankQueueAPI",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
