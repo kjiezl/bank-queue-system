@@ -29,21 +29,21 @@ namespace BankQueueApp
 
                 if (queueData.CurrentQueue != null)
                 {
-                    lblCurrentQueue.Text = $"Current Queue: {queueData.CurrentQueue.QueueNumber}";
-                    lblAssignedTeller.Text = $"Assigned Teller: {queueData.CurrentQueue.TellerNumber}";
+                    lblCurrentQueue.Text = $"Currently Serving: {queueData.CurrentQueue.QueueNumber}";
+                    //lblAssignedTeller.Text = $"Assigned Teller: {queueData.CurrentQueue.TellerNumber}";
                 }
                 else
                 {
-                    lblCurrentQueue.Text = "Current Queue: None";
-                    lblAssignedTeller.Text = "Assigned Teller: None";
+                    lblCurrentQueue.Text = "Currently Serving: None";
+                    //lblAssignedTeller.Text = "Assigned Teller: None";
                 }
 
-                lblCustomersInQueue.Text = $"Customers in Queue: {queueData.QueueCount}";
+                lblCustomersInQueue.Text = $"Waiting: {queueData.QueueCount}";
 
                 listBoxQueue.Items.Clear();
                 foreach (var waitingQueue in queueData.WaitingQueue)
                 {
-                    listBoxQueue.Items.Add($"Queue {waitingQueue.QueueNumber} - {waitingQueue.ServiceType}");
+                    listBoxQueue.Items.Add($"{waitingQueue.QueueNumber} - {waitingQueue.ServiceType}");
                 }
             }
             catch (Exception ex)

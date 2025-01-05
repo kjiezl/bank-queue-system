@@ -50,9 +50,8 @@
             this.lblAssignedTeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAssignedTeller.Location = new System.Drawing.Point(330, 72);
             this.lblAssignedTeller.Name = "lblAssignedTeller";
-            this.lblAssignedTeller.Size = new System.Drawing.Size(93, 25);
+            this.lblAssignedTeller.Size = new System.Drawing.Size(0, 25);
             this.lblAssignedTeller.TabIndex = 1;
-            this.lblAssignedTeller.Text = "at Teller: ";
             // 
             // listBoxQueue
             // 

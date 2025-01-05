@@ -15,7 +15,6 @@ namespace BankQueueApp
 
         private void KioskForm_Load(object sender, EventArgs e)
         {
-            // Populate service type dropdown
             comboBoxServiceType.Items.Add("Deposit");
             comboBoxServiceType.Items.Add("Withdrawal");
             comboBoxServiceType.Items.Add("Account Inquiry");
