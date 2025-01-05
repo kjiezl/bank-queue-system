@@ -1,4 +1,4 @@
-﻿using BankQueueAPI;
+﻿namespace BankQueueAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
 public class QueueDbContext : DbContext

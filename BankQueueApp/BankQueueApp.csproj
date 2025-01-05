@@ -180,40 +180,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiService.cs" />
-    <Compile Include="DisplayForm.cs">
+    <Compile Include="Services\ApiService.cs" />
+    <Compile Include="Forms\DisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplayForm.Designer.cs">
+    <Compile Include="Forms\DisplayForm.Designer.cs">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
+    <Compile Include="Forms\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="KioskForm.cs">
+    <Compile Include="Forms\KioskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KioskForm.Designer.cs">
+    <Compile Include="Forms\KioskForm.Designer.cs">
       <DependentUpon>KioskForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TellerForm.cs">
+    <Compile Include="Forms\TellerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TellerForm.Designer.cs">
+    <Compile Include="Forms\TellerForm.Designer.cs">
       <DependentUpon>TellerForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DisplayForm.resx">
+    <EmbeddedResource Include="Forms\DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KioskForm.resx">
+    <EmbeddedResource Include="Forms\KioskForm.resx">
       <DependentUpon>KioskForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
+    <EmbeddedResource Include="Forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -225,7 +225,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TellerForm.resx">
+    <EmbeddedResource Include="Forms\TellerForm.resx">
       <DependentUpon>TellerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
