@@ -42,6 +42,21 @@ namespace BankQueueApp
                 }
             });
 
+            _hubConnection.On<string>("CurrentlyServingUpdated", (currentlyServing) =>
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        lblCurrentQueue.Text = currentlyServing;
+                    }));
+                }
+                else
+                {
+                    lblCurrentQueue.Text = currentlyServing;
+                }
+            });
+
             await _hubConnection.StartAsync();
         }
 
@@ -50,15 +65,6 @@ namespace BankQueueApp
             try
             {
                 var queueData = await _apiService.GetQueueDataAsync();
-
-                if (queueData.CurrentQueue != null)
-                {
-                    lblCurrentQueue.Text = $"Currently Serving: {queueData.CurrentQueue.QueueNumber}";
-                }
-                else
-                {
-                    lblCurrentQueue.Text = "Currently Serving: None";
-                }
 
                 lblCustomersInQueue.Text = $"Waiting: {queueData.QueueCount}";
 

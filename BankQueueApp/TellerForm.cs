@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -42,6 +41,21 @@ namespace BankQueueApp
                 }
             });
 
+            _hubConnection.On<string>("CurrentlyServingUpdated", (currentlyServing) =>
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        lblCurrentQueue.Text = currentlyServing;
+                    }));
+                }
+                else
+                {
+                    lblCurrentQueue.Text = currentlyServing;
+                }
+            });
+
             await _hubConnection.StartAsync();
         }
 
@@ -57,33 +71,10 @@ namespace BankQueueApp
                     listBoxWaitingQueue.Items.Add($"Queue {queueItem.QueueNumber} - {queueItem.ServiceType} ({queueItem.Status})");
                 }
 
-                await UpdateCurrentQueueLabelAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading queue data: {ex.Message}");
-            }
-        }
-
-        private async Task UpdateCurrentQueueLabelAsync()
-        {
-            try
-            {
-                var queueData = await _apiService.GetQueueForTellerAsync();
-                var currentQueue = queueData.FirstOrDefault(q => q.Status == "In Service");
-
-                if (currentQueue != null)
-                {
-                    lblCurrentQueue.Text = $"Currently Serving: {currentQueue.QueueNumber} - {currentQueue.ServiceType}";
-                }
-                else
-                {
-                    lblCurrentQueue.Text = "No customer is currently being served.";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error updating current queue label: {ex.Message}");
             }
         }
 
@@ -96,23 +87,19 @@ namespace BankQueueApp
             }
 
             string selectedItem = listBoxWaitingQueue.SelectedItem.ToString();
-            string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "");
-            queueNumber = queueNumber.Trim();
+            string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "").Trim();
 
             try
             {
-                var data = new
-                {
-                    QueueNumber = queueNumber.Trim(),
-                    TellerNumber = (object)null
-                };
-
-                Console.WriteLine($"Sending Data: {JsonConvert.SerializeObject(data)}");
+                var data = new { QueueNumber = queueNumber, TellerNumber = (object)null };
 
                 bool success = await _apiService.CallNextAsync(data);
                 if (success)
                 {
                     await LoadQueueDataAsync();
+                    string currentlyServing = $"Currently Serving: {queueNumber}";
+                    lblCurrentQueue.Text = currentlyServing;
+                    await NotifyCurrentlyServingAsync(currentlyServing);
                 }
                 else
                 {
@@ -182,6 +169,21 @@ namespace BankQueueApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error skipping customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task NotifyCurrentlyServingAsync(string currentlyServing)
+        {
+            try
+            {
+                if (_hubConnection != null && _hubConnection.State == HubConnectionState.Connected)
+                {
+                    await _hubConnection.InvokeAsync("UpdateCurrentlyServing", currentlyServing);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error notifying currently serving update: {ex.Message}");
             }
         }
     }
