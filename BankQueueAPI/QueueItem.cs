@@ -1,7 +1,10 @@
-﻿public class QueueItem
+﻿namespace BankQueueAPI
 {
-    public int Id { get; set; }
-    public string QueueNumber { get; set; }
-    public string ServiceType { get; set; }
-    public string Status { get; set; }
+    public class QueueItem
+    {
+        public int Id { get; set; }
+        public string? QueueNumber { get; set; }
+        public string? ServiceType { get; set; }
+        public string? Status { get; set; }
+    }
 }
