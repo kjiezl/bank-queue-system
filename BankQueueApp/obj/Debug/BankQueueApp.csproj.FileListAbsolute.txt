@@ -1,0 +1,16 @@
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\bin\Debug\BankQueueApp.exe.config
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\bin\Debug\BankQueueApp.exe
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\bin\Debug\BankQueueApp.pdb
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.csproj.AssemblyReference.cache
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.DisplayForm.resources
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.KioskForm.resources
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.Menu.resources
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.Properties.Resources.resources
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.TellerForm.resources
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.csproj.GenerateResource.cache
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.csproj.CoreCompileInputs.cache
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.csproj.CopyComplete
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.exe
+C:\Users\kjiez\OneDrive\Desktop\dbms-queue\BankQueueApp\obj\Debug\BankQueueApp.pdb
