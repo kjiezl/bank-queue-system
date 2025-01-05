@@ -45,8 +45,7 @@ namespace BankQueueApp
                 bool success = await _apiService.AddQueueAsync(queueNumber, serviceType);
                 if (success)
                 {
-                    lblQueueNumber.Text = $"Your Queue Number: {queueNumber}";
-                    lblTellerAssigned.Text = $"Assigned Teller: TBD (Will be updated at the teller)";
+                    lblQueueNumber.Text = $"Your Number: {queueNumber}";
                 }
                 else
                 {

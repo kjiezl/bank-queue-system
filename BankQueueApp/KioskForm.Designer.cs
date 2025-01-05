@@ -31,7 +31,6 @@
             this.comboBoxServiceType = new System.Windows.Forms.ComboBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.lblQueueNumber = new System.Windows.Forms.Label();
-            this.lblTellerAssigned = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBoxServiceType
@@ -66,30 +65,19 @@
             this.lblQueueNumber.TabIndex = 2;
             this.lblQueueNumber.Text = "Your Number: ";
             // 
-            // lblTellerAssigned
-            // 
-            this.lblTellerAssigned.AutoSize = true;
-            this.lblTellerAssigned.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTellerAssigned.Location = new System.Drawing.Point(102, 248);
-            this.lblTellerAssigned.Name = "lblTellerAssigned";
-            this.lblTellerAssigned.Size = new System.Drawing.Size(93, 25);
-            this.lblTellerAssigned.TabIndex = 3;
-            this.lblTellerAssigned.Text = "at Teller: ";
-            // 
             // KioskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 345);
-            this.Controls.Add(this.lblTellerAssigned);
             this.Controls.Add(this.lblQueueNumber);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.comboBoxServiceType);
             this.Name = "KioskForm";
             this.Text = "KioskForm";
+            this.Load += new System.EventHandler(this.KioskForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Load += new System.EventHandler(this.KioskForm_Load);
 
         }
 
@@ -98,6 +86,5 @@
         private System.Windows.Forms.ComboBox comboBoxServiceType;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Label lblQueueNumber;
-        private System.Windows.Forms.Label lblTellerAssigned;
     }
 }

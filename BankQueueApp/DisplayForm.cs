@@ -54,12 +54,10 @@ namespace BankQueueApp
                 if (queueData.CurrentQueue != null)
                 {
                     lblCurrentQueue.Text = $"Currently Serving: {queueData.CurrentQueue.QueueNumber}";
-                    //lblAssignedTeller.Text = $"Assigned Teller: {queueData.CurrentQueue.TellerNumber}";
                 }
                 else
                 {
                     lblCurrentQueue.Text = "Currently Serving: None";
-                    //lblAssignedTeller.Text = "Assigned Teller: None";
                 }
 
                 lblCustomersInQueue.Text = $"Waiting: {queueData.QueueCount}";
