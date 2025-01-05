@@ -45,7 +45,7 @@
             // 
             // listBoxQueue
             // 
-            this.listBoxQueue.BackColor = System.Drawing.Color.AliceBlue;
+            this.listBoxQueue.BackColor = System.Drawing.Color.LightBlue;
             this.listBoxQueue.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.listBoxQueue.Font = new System.Drawing.Font("Fredoka", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxQueue.ForeColor = System.Drawing.Color.RoyalBlue;
@@ -85,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.BackColor = System.Drawing.Color.LightCyan;
             this.ClientSize = new System.Drawing.Size(567, 399);
             this.Controls.Add(this.lblCurrentQueue);
             this.Controls.Add(this.lblCustomersInQueue);

@@ -38,63 +38,80 @@
             // lblCurrentQueue
             // 
             this.lblCurrentQueue.AutoSize = true;
-            this.lblCurrentQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentQueue.Location = new System.Drawing.Point(106, 84);
+            this.lblCurrentQueue.Font = new System.Drawing.Font("Fredoka", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentQueue.ForeColor = System.Drawing.Color.MediumOrchid;
+            this.lblCurrentQueue.Location = new System.Drawing.Point(89, 60);
             this.lblCurrentQueue.Name = "lblCurrentQueue";
-            this.lblCurrentQueue.Size = new System.Drawing.Size(174, 25);
+            this.lblCurrentQueue.Size = new System.Drawing.Size(273, 34);
             this.lblCurrentQueue.TabIndex = 0;
-            this.lblCurrentQueue.Text = "Currently Serving: ";
+            this.lblCurrentQueue.Text = "No currently serving.";
             // 
             // btnCallNext
             // 
             this.btnCallNext.AutoSize = true;
-            this.btnCallNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCallNext.Location = new System.Drawing.Point(257, 168);
+            this.btnCallNext.BackColor = System.Drawing.Color.DarkOrchid;
+            this.btnCallNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCallNext.FlatAppearance.BorderSize = 15;
+            this.btnCallNext.Font = new System.Drawing.Font("Fredoka SemiBold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCallNext.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCallNext.Location = new System.Drawing.Point(257, 355);
             this.btnCallNext.Name = "btnCallNext";
-            this.btnCallNext.Size = new System.Drawing.Size(101, 35);
+            this.btnCallNext.Size = new System.Drawing.Size(105, 35);
             this.btnCallNext.TabIndex = 1;
             this.btnCallNext.Text = "Call Next";
-            this.btnCallNext.UseVisualStyleBackColor = true;
+            this.btnCallNext.UseVisualStyleBackColor = false;
             this.btnCallNext.Click += new System.EventHandler(this.btnCallNext_Click);
             // 
             // btnMarkAsServed
             // 
             this.btnMarkAsServed.AutoSize = true;
-            this.btnMarkAsServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMarkAsServed.Location = new System.Drawing.Point(58, 168);
+            this.btnMarkAsServed.BackColor = System.Drawing.Color.DarkOrchid;
+            this.btnMarkAsServed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarkAsServed.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMarkAsServed.FlatAppearance.BorderSize = 15;
+            this.btnMarkAsServed.Font = new System.Drawing.Font("Fredoka SemiBold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarkAsServed.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.btnMarkAsServed.Location = new System.Drawing.Point(52, 352);
             this.btnMarkAsServed.Name = "btnMarkAsServed";
-            this.btnMarkAsServed.Size = new System.Drawing.Size(160, 35);
+            this.btnMarkAsServed.Size = new System.Drawing.Size(172, 38);
             this.btnMarkAsServed.TabIndex = 2;
             this.btnMarkAsServed.Text = "Mark as Served";
-            this.btnMarkAsServed.UseVisualStyleBackColor = true;
+            this.btnMarkAsServed.UseVisualStyleBackColor = false;
             this.btnMarkAsServed.Click += new System.EventHandler(this.btnMarkAsServed_Click);
             // 
             // btnSkip
             // 
             this.btnSkip.AutoSize = true;
-            this.btnSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSkip.Location = new System.Drawing.Point(396, 168);
+            this.btnSkip.BackColor = System.Drawing.Color.DarkOrchid;
+            this.btnSkip.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSkip.FlatAppearance.BorderSize = 15;
+            this.btnSkip.Font = new System.Drawing.Font("Fredoka SemiBold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkip.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSkip.Location = new System.Drawing.Point(406, 355);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(87, 35);
             this.btnSkip.TabIndex = 3;
             this.btnSkip.Text = "Skip";
-            this.btnSkip.UseVisualStyleBackColor = true;
+            this.btnSkip.UseVisualStyleBackColor = false;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // listBoxWaitingQueue
             // 
-            this.listBoxWaitingQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxWaitingQueue.BackColor = System.Drawing.Color.Thistle;
+            this.listBoxWaitingQueue.Font = new System.Drawing.Font("Fredoka", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxWaitingQueue.ForeColor = System.Drawing.Color.DarkOrchid;
             this.listBoxWaitingQueue.FormattingEnabled = true;
             this.listBoxWaitingQueue.ItemHeight = 25;
-            this.listBoxWaitingQueue.Location = new System.Drawing.Point(75, 238);
+            this.listBoxWaitingQueue.Location = new System.Drawing.Point(52, 141);
             this.listBoxWaitingQueue.Name = "listBoxWaitingQueue";
-            this.listBoxWaitingQueue.Size = new System.Drawing.Size(408, 154);
+            this.listBoxWaitingQueue.Size = new System.Drawing.Size(441, 179);
             this.listBoxWaitingQueue.TabIndex = 4;
             // 
             // TellerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(560, 439);
             this.Controls.Add(this.listBoxWaitingQueue);
             this.Controls.Add(this.btnSkip);
@@ -103,9 +120,10 @@
             this.Controls.Add(this.lblCurrentQueue);
             this.Name = "TellerForm";
             this.Text = "TellerForm";
+            this.Load += new System.EventHandler(this.TellerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Load += new System.EventHandler(this.TellerForm_Load);
+
         }
 
         #endregion

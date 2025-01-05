@@ -35,52 +35,63 @@
             // 
             // btnDisplay
             // 
-            this.btnDisplay.AutoSize = true;
-            this.btnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisplay.Location = new System.Drawing.Point(143, 86);
+            this.btnDisplay.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnDisplay.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDisplay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDisplay.FlatAppearance.BorderSize = 15;
+            this.btnDisplay.Font = new System.Drawing.Font("Fredoka", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDisplay.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDisplay.Location = new System.Drawing.Point(118, 46);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(5);
             this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(86, 35);
+            this.btnDisplay.Padding = new System.Windows.Forms.Padding(10);
+            this.btnDisplay.Size = new System.Drawing.Size(145, 79);
             this.btnDisplay.TabIndex = 0;
             this.btnDisplay.Text = "Display";
-            this.btnDisplay.UseVisualStyleBackColor = true;
+            this.btnDisplay.UseVisualStyleBackColor = false;
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // btnKiosk
             // 
-            this.btnKiosk.AutoSize = true;
-            this.btnKiosk.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKiosk.Location = new System.Drawing.Point(145, 149);
+            this.btnKiosk.BackColor = System.Drawing.Color.DarkSalmon;
+            this.btnKiosk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKiosk.FlatAppearance.BorderSize = 15;
+            this.btnKiosk.Font = new System.Drawing.Font("Fredoka", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKiosk.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnKiosk.Location = new System.Drawing.Point(118, 133);
             this.btnKiosk.Name = "btnKiosk";
-            this.btnKiosk.Size = new System.Drawing.Size(75, 35);
+            this.btnKiosk.Size = new System.Drawing.Size(145, 77);
             this.btnKiosk.TabIndex = 1;
             this.btnKiosk.Text = "Kiosk";
-            this.btnKiosk.UseVisualStyleBackColor = true;
+            this.btnKiosk.UseVisualStyleBackColor = false;
             this.btnKiosk.Click += new System.EventHandler(this.btnKiosk_Click);
             // 
             // btnTeller
             // 
-            this.btnTeller.AutoSize = true;
-            this.btnTeller.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeller.Location = new System.Drawing.Point(143, 216);
+            this.btnTeller.BackColor = System.Drawing.Color.DarkOrchid;
+            this.btnTeller.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTeller.Font = new System.Drawing.Font("Fredoka", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeller.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnTeller.Location = new System.Drawing.Point(118, 230);
             this.btnTeller.Name = "btnTeller";
-            this.btnTeller.Size = new System.Drawing.Size(75, 35);
+            this.btnTeller.Size = new System.Drawing.Size(145, 77);
             this.btnTeller.TabIndex = 2;
             this.btnTeller.Text = "Teller";
-            this.btnTeller.UseVisualStyleBackColor = true;
+            this.btnTeller.UseVisualStyleBackColor = false;
             this.btnTeller.Click += new System.EventHandler(this.btnTeller_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 344);
+            this.BackColor = System.Drawing.Color.MistyRose;
+            this.ClientSize = new System.Drawing.Size(387, 351);
             this.Controls.Add(this.btnTeller);
             this.Controls.Add(this.btnKiosk);
             this.Controls.Add(this.btnDisplay);
             this.Name = "Menu";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

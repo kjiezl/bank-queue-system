@@ -35,33 +35,41 @@
             // 
             // comboBoxServiceType
             // 
-            this.comboBoxServiceType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxServiceType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxServiceType.Font = new System.Drawing.Font("Fredoka SemiBold", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxServiceType.ForeColor = System.Drawing.Color.Coral;
             this.comboBoxServiceType.FormattingEnabled = true;
-            this.comboBoxServiceType.Location = new System.Drawing.Point(130, 50);
+            this.comboBoxServiceType.Location = new System.Drawing.Point(114, 48);
             this.comboBoxServiceType.Name = "comboBoxServiceType";
-            this.comboBoxServiceType.Size = new System.Drawing.Size(220, 33);
+            this.comboBoxServiceType.Size = new System.Drawing.Size(248, 37);
             this.comboBoxServiceType.TabIndex = 0;
             this.comboBoxServiceType.Text = "Select Service Type";
             // 
             // btnGenerate
             // 
             this.btnGenerate.AutoSize = true;
-            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate.Location = new System.Drawing.Point(171, 119);
+            this.btnGenerate.BackColor = System.Drawing.Color.DarkSalmon;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnGenerate.FlatAppearance.BorderSize = 15;
+            this.btnGenerate.Font = new System.Drawing.Font("Fredoka", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btnGenerate.Location = new System.Drawing.Point(161, 123);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(127, 35);
+            this.btnGenerate.Size = new System.Drawing.Size(142, 45);
             this.btnGenerate.TabIndex = 1;
             this.btnGenerate.Text = "Get Number";
-            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // lblQueueNumber
             // 
             this.lblQueueNumber.AutoSize = true;
-            this.lblQueueNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQueueNumber.Location = new System.Drawing.Point(57, 205);
+            this.lblQueueNumber.Font = new System.Drawing.Font("Fredoka", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQueueNumber.ForeColor = System.Drawing.Color.Coral;
+            this.lblQueueNumber.Location = new System.Drawing.Point(48, 215);
             this.lblQueueNumber.Name = "lblQueueNumber";
-            this.lblQueueNumber.Size = new System.Drawing.Size(138, 25);
+            this.lblQueueNumber.Size = new System.Drawing.Size(184, 34);
             this.lblQueueNumber.TabIndex = 2;
             this.lblQueueNumber.Text = "Your Number: ";
             // 
@@ -69,6 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(474, 345);
             this.Controls.Add(this.lblQueueNumber);
             this.Controls.Add(this.btnGenerate);
