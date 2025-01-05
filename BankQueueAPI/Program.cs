@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Data.SQLite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +18,8 @@ var connectionString = "Data Source=queue.db";
 builder.Services.AddDbContext<QueueDbContext>(options =>
     options.UseSqlite(connectionString));
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 DatabaseInitializer.InitializeDatabase();
@@ -33,6 +34,7 @@ app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.MapControllers();
 
+app.MapControllers();
+app.MapHub<QueueHub>("/queueHub");
 app.Run();

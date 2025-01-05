@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Data.SQLite;
 using System.Text.Json;
 
@@ -9,6 +10,12 @@ namespace BankQueueAPI.Controllers
     public class QueueController : ControllerBase
     {
         private readonly string _connectionString = "Data Source=queue.db;Version=3;";
+        private readonly IHubContext<QueueHub> _hubContext;
+
+        public QueueController(IHubContext<QueueHub> hubContext)
+        {
+            _hubContext = hubContext;
+        }
 
         [HttpGet("status")]
         public IActionResult GetQueueStatus()
@@ -51,11 +58,10 @@ namespace BankQueueAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult AddToQueue([FromBody] JsonElement data)
+        public async Task<IActionResult> AddToQueue([FromBody] JsonElement data)
         {
             try
             {
-                //Console.WriteLine($"Received data: {data}");
                 if (!data.TryGetProperty("QueueNumber", out var queueNumberElement) || !data.TryGetProperty("ServiceType", out var serviceTypeElement))
                 {
                     return BadRequest(new { Message = "QueueNumber or ServiceType is missing" });
@@ -73,6 +79,9 @@ namespace BankQueueAPI.Controllers
                     command.Parameters.AddWithValue("@ServiceType", serviceType);
                     command.ExecuteNonQuery();
                 }
+
+                await _hubContext.Clients.All.SendAsync("QueueUpdated");
+
                 return Ok(new { Message = "Added to queue successfully." });
             }
             catch (Exception ex)
@@ -107,7 +116,7 @@ namespace BankQueueAPI.Controllers
         }
 
         [HttpPost("callNext")]
-        public IActionResult CallNextCustomer([FromBody] JsonElement data)
+        public async Task<IActionResult> CallNextCustomer([FromBody] JsonElement data)
         {
             try
             {
@@ -118,23 +127,9 @@ namespace BankQueueAPI.Controllers
 
                 string? queueNumber = queueNumberElement.GetString();
                 string? tellerNumber = tellerNumberElement.GetString();
-                Console.WriteLine($"QueueNumber being checked: {queueNumber}");
 
                 using var connection = new SQLiteConnection(_connectionString);
                 connection.Open();
-
-                string checkStatusQuery = "SELECT Status FROM Queue WHERE UPPER(QueueNumber) = UPPER(@QueueNumber)";
-                using (var checkCommand = new SQLiteCommand(checkStatusQuery, connection))
-                {
-                    checkCommand.Parameters.AddWithValue("@QueueNumber", queueNumber);
-                    var result = checkCommand.ExecuteScalar();
-                    Console.WriteLine($"Result of Status Query for Queue {queueNumber}: {result}");
-
-                    if (result == null || result?.ToString()?.Trim() != "Waiting")
-                    {
-                        return BadRequest(new { Message = "Queue is not in 'Waiting' status or doesn't exist" });
-                    }
-                }
 
                 string query = "UPDATE Queue SET Status = 'In Service', TellerNumber = @TellerNumber WHERE QueueNumber = @QueueNumber AND Status = 'Waiting' LIMIT 1";
                 using SQLiteCommand command = new(query, connection);
@@ -144,6 +139,8 @@ namespace BankQueueAPI.Controllers
 
                 if (rowsAffected > 0)
                 {
+                    await _hubContext.Clients.All.SendAsync("QueueUpdated");
+
                     return Ok(new { Message = "Next customer called successfully." });
                 }
                 else
@@ -159,7 +156,7 @@ namespace BankQueueAPI.Controllers
         }
 
         [HttpPost("markServed")]
-        public IActionResult MarkCustomerAsServed([FromBody] JsonElement data)
+        public async Task<IActionResult> MarkCustomerAsServed([FromBody] JsonElement data)
         {
             try
             {
@@ -178,6 +175,9 @@ namespace BankQueueAPI.Controllers
                     command.Parameters.AddWithValue("@QueueNumber", queueNumber);
                     command.ExecuteNonQuery();
                 }
+
+                await _hubContext.Clients.All.SendAsync("QueueUpdated");
+
                 return Ok(new { Message = "Customer marked as served." });
             }
             catch (Exception ex)
@@ -188,7 +188,7 @@ namespace BankQueueAPI.Controllers
         }
 
         [HttpPost("skip")]
-        public IActionResult SkipCustomer([FromBody] JsonElement data)
+        public async Task<IActionResult> SkipCustomer([FromBody] JsonElement data)
         {
             try
             {
@@ -207,6 +207,9 @@ namespace BankQueueAPI.Controllers
                     command.Parameters.AddWithValue("@QueueNumber", queueNumber);
                     command.ExecuteNonQuery();
                 }
+
+                await _hubContext.Clients.All.SendAsync("QueueUpdated");
+
                 return Ok(new { Message = "Customer skipped successfully." });
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace BankQueueApp
     public partial class DisplayForm : Form
     {
         private readonly ApiService _apiService;
+        private HubConnection _hubConnection;
 
         public DisplayForm()
         {
@@ -18,7 +20,29 @@ namespace BankQueueApp
 
         private async void DisplayForm_Load(object sender, EventArgs e)
         {
+            await InitializeSignalRAsync();
             await LoadQueueDataAsync();
+        }
+
+        private async Task InitializeSignalRAsync()
+        {
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:7096/queueHub")
+                .Build();
+
+            _hubConnection.On("QueueUpdated", async () =>
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(async () => await LoadQueueDataAsync()));
+                }
+                else
+                {
+                    await LoadQueueDataAsync();
+                }
+            });
+
+            await _hubConnection.StartAsync();
         }
 
         private async Task LoadQueueDataAsync()

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace BankQueueApp
     public partial class TellerForm : Form
     {
         private readonly ApiService _apiService;
+        private HubConnection _hubConnection;
 
         public TellerForm()
         {
@@ -18,7 +20,29 @@ namespace BankQueueApp
 
         private async void TellerForm_Load(object sender, EventArgs e)
         {
+            await InitializeSignalRAsync();
             await LoadQueueDataAsync();
+        }
+
+        private async Task InitializeSignalRAsync()
+        {
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:7096/queueHub")
+                .Build();
+
+            _hubConnection.On("QueueUpdated", async () =>
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(async () => await LoadQueueDataAsync()));
+                }
+                else
+                {
+                    await LoadQueueDataAsync();
+                }
+            });
+
+            await _hubConnection.StartAsync();
         }
 
         private async Task LoadQueueDataAsync()
@@ -32,50 +56,12 @@ namespace BankQueueApp
                 {
                     listBoxWaitingQueue.Items.Add($"Queue {queueItem.QueueNumber} - {queueItem.ServiceType} ({queueItem.Status})");
                 }
+
+                await UpdateCurrentQueueLabelAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading queue data: {ex.Message}");
-            }
-        }
-
-        private async void btnCallNext_Click(object sender, EventArgs e)
-        {
-            if (listBoxWaitingQueue.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a queue to call next.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string selectedItem = listBoxWaitingQueue.SelectedItem.ToString();
-            string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "");
-
-            queueNumber = queueNumber.Trim();
-
-            try
-            {
-                var data = new
-                {
-                    QueueNumber = queueNumber,
-                    TellerNumber = (object)null
-                };
-
-                Console.WriteLine($"Sending Data: {JsonConvert.SerializeObject(data)}");
-
-                bool success = await _apiService.CallNextAsync(data);
-                if (success)
-                {
-                    await LoadQueueDataAsync();
-                    await UpdateCurrentQueueLabelAsync();
-                }
-                else
-                {
-                    MessageBox.Show("Error calling next customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error calling next customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -84,7 +70,6 @@ namespace BankQueueApp
             try
             {
                 var queueData = await _apiService.GetQueueForTellerAsync();
-
                 var currentQueue = queueData.FirstOrDefault(q => q.Status == "In Service");
 
                 if (currentQueue != null)
@@ -98,7 +83,45 @@ namespace BankQueueApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating current queue label: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error updating current queue label: {ex.Message}");
+            }
+        }
+
+        private async void btnCallNext_Click(object sender, EventArgs e)
+        {
+            if (listBoxWaitingQueue.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a queue to call next.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string selectedItem = listBoxWaitingQueue.SelectedItem.ToString();
+            string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "");
+            queueNumber = queueNumber.Trim();
+
+            try
+            {
+                var data = new
+                {
+                    QueueNumber = queueNumber.Trim(),
+                    TellerNumber = (object)null
+                };
+
+                Console.WriteLine($"Sending Data: {JsonConvert.SerializeObject(data)}");
+
+                bool success = await _apiService.CallNextAsync(data);
+                if (success)
+                {
+                    await LoadQueueDataAsync();
+                }
+                else
+                {
+                    MessageBox.Show("Error calling next customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calling next customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -112,16 +135,14 @@ namespace BankQueueApp
 
             string selectedItem = listBoxWaitingQueue.SelectedItem.ToString();
             string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "");
-
             queueNumber = queueNumber.Trim();
 
             try
             {
-                bool success = await _apiService.MarkAsServedAsync(queueNumber);
+                bool success = await _apiService.MarkAsServedAsync(queueNumber.Trim());
                 if (success)
                 {
                     await LoadQueueDataAsync();
-                    await UpdateCurrentQueueLabelAsync();
                 }
                 else
                 {
@@ -144,12 +165,11 @@ namespace BankQueueApp
 
             string selectedItem = listBoxWaitingQueue.SelectedItem.ToString();
             string queueNumber = selectedItem.Split('-')[0].Trim().Replace("Queue", "");
-
             queueNumber = queueNumber.Trim();
 
             try
             {
-                bool success = await _apiService.SkipCustomerAsync(queueNumber);
+                bool success = await _apiService.SkipCustomerAsync(queueNumber.Trim());
                 if (success)
                 {
                     await LoadQueueDataAsync();
