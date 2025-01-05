@@ -25,7 +25,9 @@ namespace BankQueueApp
 
         private string GenerateQueueNumber()
         {
-            return "A" + DateTime.Now.Ticks % 1000;
+            Random random = new Random();
+            char randomLetter = (char)('A' + random.Next(0, 26)); // Random letter from A to Z
+            return randomLetter + (DateTime.Now.Ticks % 1000).ToString();
         }
 
         private async void btnGenerate_Click(object sender, EventArgs e)
