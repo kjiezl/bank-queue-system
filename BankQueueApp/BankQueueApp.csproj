@@ -26,7 +26,7 @@
     <InstallUrl>https://drive.google.com/drive/folders/1RjwNyry4fX1Pzo-7vjFfcf_fV6eVIHm0%3fusp=sharing/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
