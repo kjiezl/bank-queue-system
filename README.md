@@ -27,8 +27,3 @@ This repository contains the **Bank Queue Management Application**, a client-ser
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/)
 - Visual Studio (2022 or later recommended)
 - SQL Server (optional if a database is configured)
-
-**Interfaces**:
-   - Tellers can manage the queue.
-   - Customers can take a queue number from the kiosk.
-   - The display shows real-time updates of queue status.
